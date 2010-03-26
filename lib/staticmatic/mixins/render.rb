@@ -31,7 +31,7 @@ module StaticMatic::RenderMixin
   end
 
   def generate_html_with_layout(source, source_dir = '')
-    @current_page = File.join(source_dir, "#{source}.html")
+    @current_page = File.join(source_dir, File.extname(source).empty? ? "#{source}.html" : source)
     @current_file_stack.unshift(File.join(source_dir, "#{source}.haml"))
     begin 
       template_content = generate_html(source, source_dir)

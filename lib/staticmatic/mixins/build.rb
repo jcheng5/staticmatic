@@ -38,7 +38,7 @@ module StaticMatic::BuildMixin
   end
 
   def generate_site_file(filename, extension, content)
-    path = File.join(@site_dir,"#{filename}.#{extension}")
+    path = File.join(@site_dir, File.extname(filename).empty? ? "#{filename}.#{extension}" : filename)
     FileUtils.mkdir_p(File.dirname(path))
     File.open(path, 'w+') do |f|
       f << content
